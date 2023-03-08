@@ -7,7 +7,7 @@ export async function getStaticPaths() {
     const events = await getEvents();
     return {
         paths: Object.keys(events).map((key) => ({ params: { index: key } })),
-        fallback: true
+        fallback: false
     };
 }
 
