@@ -124,6 +124,7 @@ export async function getStaticProps() {
             about,
             team: JSON.stringify(team),
             socials
-        }
+        },
+        revalidate: 60
     };
 }

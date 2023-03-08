@@ -156,6 +156,7 @@ export async function getStaticProps() {
         props: {
             home,
             socials
-        }
+        },
+        revalidate: 60
     };
 }

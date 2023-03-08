@@ -40,6 +40,7 @@ export async function getStaticProps() {
     return {
         props: {
             partners
-        }
+        },
+        revalidate: 60
     };
 }

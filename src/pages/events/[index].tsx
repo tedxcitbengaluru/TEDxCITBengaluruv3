@@ -17,6 +17,7 @@ export async function getStaticProps() {
         props: {
             events,
             circles
-        }
+        },
+        revalidate: 60
     };
 }
