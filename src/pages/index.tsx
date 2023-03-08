@@ -16,30 +16,34 @@ export default function Home({ home, socials }: { home: any; socials: any }) {
     const date = useDate(home.date.start);
     return (
         <main>
-            <div className="relative flex h-screen w-screen justify-center">
+            <div className="relative flex h-[calc(510/1047*100vw)] w-screen justify-center">
                 <Image
                     src={home.backdrop_photo}
-                    fill
                     alt="banner"
+                    fill
                     className={home.full_poster ? '' : 'blur'}
                     priority
                 />
                 {!home.full_poster && (
                     <>
-                        <div className="absolute top-[30%] z-10 h-[80%] w-[80%]">
+                        <div className="absolute top-[30%] z-10">
                             {home.video ? (
-                                <iframe
-                                    src={home.video}
-                                    allow="autoplay"
-                                    className="h-full w-full rounded-3xl border-4 border-ted-white-100"
-                                />
+                                <div className="h-[calc(1080/1920*80vw)] w-[80vw]">
+                                    <iframe
+                                        src={home.video}
+                                        allow="autoplay"
+                                        className="h-full w-full rounded-3xl border-4 border-ted-white-100"
+                                    />
+                                </div>
                             ) : (
-                                <Image
-                                    src={home.backdrop_photo}
-                                    className="rounded-3xl border-4 border-ted-white-100"
-                                    fill
-                                    alt="banner"
-                                />
+                                <div className="relative h-[calc(510/1047)*80vw] w-[80vw]">
+                                    <Image
+                                        src={home.backdrop_photo}
+                                        className="rounded-3xl border-4 border-ted-white-100"
+                                        fill
+                                        alt="banner"
+                                    />
+                                </div>
                             )}
                         </div>
                         <div className="absolute bottom-[-10%] h-[40%] w-screen bg-ted-red-100"></div>
