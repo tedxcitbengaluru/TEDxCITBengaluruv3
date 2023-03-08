@@ -157,6 +157,6 @@ export async function getStaticProps() {
             home,
             socials
         },
-        revalidate: 60
+        revalidate: process.env.REVALIDATE
     };
 }

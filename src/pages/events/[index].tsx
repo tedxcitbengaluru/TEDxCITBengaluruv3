@@ -18,6 +18,6 @@ export async function getStaticProps() {
             events,
             circles
         },
-        revalidate: 60
+        revalidate: process.env.REVALIDATE
     };
 }
