@@ -4,7 +4,7 @@ import { getEvents, getCircles } from '@/notion';
 export default EventPage;
 
 export async function getStaticPaths() {
-    const events = await getEvents();
+    const events = await getCircles();
     return {
         paths: Object.keys(events).map((key) => ({ params: { index: key } })),
         fallback: false
