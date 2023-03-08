@@ -125,6 +125,6 @@ export async function getStaticProps() {
             team: JSON.stringify(team),
             socials
         },
-        revalidate: process.env.REVALIDATE
+        revalidate: process.env.REVALIDATE ? parseInt(process.env.REVALIDATE) : 10
     };
 }

@@ -41,6 +41,6 @@ export async function getStaticProps() {
         props: {
             partners
         },
-        revalidate: process.env.REVALIDATE
+        revalidate: process.env.REVALIDATE ? parseInt(process.env.REVALIDATE) : 10
     };
 }

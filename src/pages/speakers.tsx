@@ -64,6 +64,6 @@ export async function getStaticProps() {
         props: {
             speakers
         },
-        revalidate: process.env.REVALIDATE
+        revalidate: process.env.REVALIDATE ? parseInt(process.env.REVALIDATE) : 10
     };
 }
