@@ -1,9 +1,20 @@
+import Founders from '@/components/Founders';
 import Socials from '@/components/Socials';
 import Team from '@/components/Team';
-import { getAbout, getSocial, getTeam } from '@/notion';
+import { getAbout, getFounders, getSocial, getTeam } from '@/notion';
 import Image from 'next/image';
 
-export default function About({ about, team, socials }: { about: any; socials: any; team: any }) {
+export default function About({
+    about,
+    team,
+    socials,
+    founders
+}: {
+    about: any;
+    socials: any;
+    team: any;
+    founders: any;
+}) {
     return (
         <main>
             <div className="text-center text-3xl font-bold text-ted-red-100 md:text-5xl">
@@ -71,6 +82,7 @@ export default function About({ about, team, socials }: { about: any; socials: a
                 })}
             </div>
             <Team team={JSON.parse(team)} />
+            <Founders founders={founders} />
             <div className="flex w-screen flex-col bg-ted-red-100 py-16 px-8 font-semibold text-ted-white-100 sm:px-16 md:px-24">
                 <div className="flex flex-col items-center gap-4">
                     <div className="text-3xl md:text-5xl">About TEDx</div>
@@ -117,13 +129,19 @@ export default function About({ about, team, socials }: { about: any; socials: a
 }
 
 export async function getStaticProps() {
-    const [about, team, socials] = await Promise.all([getAbout(), getTeam(), getSocial()]);
+    const [about, team, socials, founders] = await Promise.all([
+        getAbout(),
+        getTeam(),
+        getSocial(),
+        getFounders()
+    ]);
 
     return {
         props: {
             about,
             team: JSON.stringify(team),
-            socials
+            socials,
+            founders
         },
         revalidate: process.env.REVALIDATE ? parseInt(process.env.REVALIDATE) : 10
     };

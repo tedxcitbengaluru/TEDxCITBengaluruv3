@@ -5,18 +5,17 @@ export default function Partners({ partners }: { partners: any }) {
     const sortedOrder = Object.keys(partners).sort(
         (a: string, b: string) => parseInt(a) - parseInt(b)
     );
-
     return (
         <main className="px-8">
-            {sortedOrder.map((order) => {
+            {sortedOrder?.map((order) => {
                 return (
                     <>
                         <div className="my-16 text-center text-5xl font-bold text-ted-red-100">
-                            {partners[order].category_title}
+                            {partners[order]?.category_title}
                             <div className="mx-16 mt-8 flex flex-wrap items-center justify-center gap-16">
-                                {partners[order].brands.map((brand: any) => {
+                                {partners[order]?.brands?.map((brand: any, idx: number) => {
                                     return (
-                                        <div className="relative flex w-[200px] flex-col">
+                                        <div className="relative flex w-[200px] flex-col" key={idx}>
                                             <Image
                                                 src={brand.logo}
                                                 width={brand.logo_width}
@@ -39,7 +38,7 @@ export async function getStaticProps() {
     const partners = await getSponsors();
     return {
         props: {
-            partners
+            partners: partners
         },
         revalidate: process.env.REVALIDATE ? parseInt(process.env.REVALIDATE) : 10
     };

@@ -8,7 +8,8 @@ import {
     formatSponsors,
     formatHome,
     formatSocial,
-    formatAbout
+    formatAbout,
+    formatFounders
 } from './format';
 
 const notion = new Client({
@@ -114,6 +115,10 @@ export const getSocial = async () => {
 
 export const getAbout = async () => {
     return formatAbout(await getDatabase(process.env.ABOUT_DB as string));
+};
+
+export const getFounders = async () => {
+    return formatFounders(await getDatabase(process.env.FOUNDERS_DB as string));
 };
 
 // (async () => {

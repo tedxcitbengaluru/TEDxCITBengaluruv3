@@ -101,3 +101,7 @@ export const formatSocial = (socialData) => {
 export const formatAbout = (aboutData) => {
     return aboutData.length && aboutData[0];
 };
+
+export const formatFounders = (founderData) => {
+    return founderData;
+};

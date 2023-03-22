@@ -39,8 +39,9 @@ export default function Home({ home, socials }: { home: any; socials: any }) {
                                 <div className="relative h-[calc(510/1047)*80vw] w-[80vw]">
                                     <Image
                                         src={home.backdrop_photo}
-                                        className="rounded-3xl border-4 border-ted-white-100"
-                                        fill
+                                        className="relative w-full rounded-3xl border-4 border-ted-white-100"
+                                        width={1047}
+                                        height={510}
                                         alt="banner"
                                     />
                                 </div>
