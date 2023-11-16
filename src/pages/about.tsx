@@ -53,9 +53,12 @@ export default function About({
                         'To create a culture that can be carried forward and can a continue inspiring the community.',
                         'To nurture and spread ideas on as large scale as possible.',
                         'To make every event, one worth remembering and looking up to.'
-                    ].map((point) => {
+                    ].map((point, i) => {
                         return (
-                            <div className="flex w-full flex-row items-center justify-start gap-4 rounded-2xl bg-ted-white-100 py-8 px-8  text-xs font-semibold shadow-[2px_10px_60px_#e62b1e33] sm:text-xl md:gap-8 md:px-16 md:text-2xl">
+                            <div
+                                key={i}
+                                className="flex w-full flex-row items-center justify-start gap-4 rounded-2xl bg-ted-white-100 py-8 px-8  text-xs font-semibold shadow-[2px_10px_60px_#e62b1e33] sm:text-xl md:gap-8 md:px-16 md:text-2xl"
+                            >
                                 <span className="text-xs text-ted-red-100 md:text-lg">X</span>
                                 {point}
                             </div>
@@ -106,20 +109,21 @@ export default function About({
                         TED is a nonprofit organization devoted to Ideas Worth Spreading. Started as
                         a four-day conference in California 30 years ago, TED has grown to support
                         its mission with multiple initiatives. The two annual TED Conferences invite
-                        the world's leading thinkers and doers to speak for 18 minutes or less. Many
-                        of these talks are then made available, free, at TED.com. TED speakers have
-                        included Bill Gates, Jane Goodall, Elizabeth Gilbert, Sir Richard Branson,
-                        Nandan Nilekani, Philippe Starck, Ngozi Okonjo-Iweala, Sal Khan and Daniel
-                        Kahneman.The annual TED Conference takes place each spring in Vancouver,
-                        British Columbia. TED's media initiatives include TED.com, where new TED
-                        Talks are posted daily; TED Translators, which provides subtitles and
-                        interactive transcripts as well as translations from volunteers worldwide;
-                        the educational initiative TED-Ed. TED has established The Audacious Project
-                        that takes a collaborative approach to funding ideas with the potential to
-                        create change at thrilling scale; TEDx, which supports individuals or groups
-                        in hosting local, self- organized TED-style events around the world, and the
-                        TED Fellows program, helping world-changing innovators from around the globe
-                        to amplify the impact of their remarkable projects and activities.
+                        the world&apos;s leading thinkers and doers to speak for 18 minutes or less.
+                        Many of these talks are then made available, free, at TED.com. TED speakers
+                        have included Bill Gates, Jane Goodall, Elizabeth Gilbert, Sir Richard
+                        Branson, Nandan Nilekani, Philippe Starck, Ngozi Okonjo-Iweala, Sal Khan and
+                        Daniel Kahneman.The annual TED Conference takes place each spring in
+                        Vancouver, British Columbia. TED&apos;s media initiatives include TED.com,
+                        where new TED Talks are posted daily; TED Translators, which provides
+                        subtitles and interactive transcripts as well as translations from
+                        volunteers worldwide; the educational initiative TED-Ed. TED has established
+                        The Audacious Project that takes a collaborative approach to funding ideas
+                        with the potential to create change at thrilling scale; TEDx, which supports
+                        individuals or groups in hosting local, self- organized TED-style events
+                        around the world, and the TED Fellows program, helping world-changing
+                        innovators from around the globe to amplify the impact of their remarkable
+                        projects and activities.
                     </div>
                 </div>
             </div>
@@ -133,7 +137,8 @@ export async function getStaticProps() {
         getAbout(),
         getTeam(),
         getSocial(),
-        getFounders()
+        // getFounders(),
+        []
     ]);
 
     return {

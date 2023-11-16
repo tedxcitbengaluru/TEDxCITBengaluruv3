@@ -1,4 +1,4 @@
-import { useDate } from '@/utils/date';
+import { convertDate } from '@/utils/date';
 import {
     faCalendarDay,
     faClock,
@@ -16,14 +16,11 @@ const EventInfo: React.FC<{
     data: any;
 }> = ({ data }) => {
     const router = useRouter();
+    const eventIndex = router.query.index as string;
+    const event = data[eventIndex];
+    const date = convertDate(event.date.start);
 
     if (router.isFallback) return <div>Loading...</div>;
-
-    const eventIndex = router.query.index as string;
-
-    const event = data[eventIndex];
-
-    const date = useDate(event.date.start);
 
     return (
         <main>

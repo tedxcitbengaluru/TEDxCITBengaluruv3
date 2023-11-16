@@ -8,12 +8,12 @@ import {
     faLightbulb,
     faCertificate
 } from '@fortawesome/free-solid-svg-icons';
-import { useDate } from '@/utils/date';
+import { convertDate } from '@/utils/date';
 import Image from 'next/image';
 import { getHome, getSocial } from '@/notion';
 
 export default function Home({ home, socials }: { home: any; socials: any }) {
-    const date = useDate(home.date.start);
+    const date = convertDate(home.date.start);
     return (
         <main>
             <div className="relative flex h-[calc(510/1047*100vw)] w-screen justify-center">
@@ -79,9 +79,12 @@ export default function Home({ home, socials }: { home: any; socials: any }) {
                         'We find the most unique, thought-provoking and impactful ideas within our local community and provide a platform for it to spread far and wide.',
                         'Connect with like-minded individuals and build your network.',
                         'Watch mesmerizing performances by our Entertainers that leave you spell-bound.'
-                    ].map((point) => {
+                    ].map((point, i) => {
                         return (
-                            <div className="flex w-full flex-row items-center justify-start gap-4 rounded-2xl bg-ted-white-100 py-8 px-8  text-sm font-semibold shadow-[2px_10px_60px_#e62b1e33] sm:text-xl md:gap-8 md:px-16 md:text-2xl">
+                            <div
+                                key={i}
+                                className="flex w-full flex-row items-center justify-start gap-4 rounded-2xl bg-ted-white-100 py-8 px-8  text-sm font-semibold shadow-[2px_10px_60px_#e62b1e33] sm:text-xl md:gap-8 md:px-16 md:text-2xl"
+                            >
                                 <span className="text-xs text-ted-red-100 md:text-lg">X</span>
                                 {point}
                             </div>
@@ -115,9 +118,12 @@ export default function Home({ home, socials }: { home: any; socials: any }) {
                             subtitle: 'And of course, Ideas for you to reflect on.',
                             icon: faLightbulb
                         }
-                    ].map((card) => {
+                    ].map((card, i) => {
                         return (
-                            <div className="flex flex-col items-center rounded-2xl bg-ted-white-100 py-8 px-4 shadow-[2px_10px_60px_#e62b1e33]">
+                            <div
+                                key={i}
+                                className="flex flex-col items-center rounded-2xl bg-ted-white-100 py-8 px-4 shadow-[2px_10px_60px_#e62b1e33]"
+                            >
                                 <div className="flex flex-row items-center justify-center gap-4  text-2xl font-bold text-ted-red-100 lg:text-3xl">
                                     <FontAwesomeIcon
                                         style={{ width: '1em', height: '1em' }}

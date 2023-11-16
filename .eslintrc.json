@@ -1,5 +1,5 @@
 {
-  "extends" : ["next/core-web-vitals","plugin:@typescript-eslint/recommended", "prettier"],
+    "extends": ["next/core-web-vitals", "plugin:@typescript-eslint/recommended", "prettier"],
     "plugins": ["prettier"],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -12,6 +12,7 @@
     },
     "rules": {
         "@typescript-eslint/no-empty-function": 0,
-        "@typescript-eslint/no-explicit-any": 0
+        "@typescript-eslint/no-explicit-any": 0,
+        "@typescript-eslint/ban-ts-comment": 0
     }
 }

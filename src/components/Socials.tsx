@@ -11,10 +11,13 @@ const Socials: React.FC<{
             <div className="relative flex w-full flex-row flex-wrap justify-center gap-8 px-16 md:gap-24">
                 {socials
                     .sort((a, b) => (a.order && b.order ? a.order - b.order : 0))
-                    .map((social) => {
+                    .map((social, i) => {
                         if (!social.link || !social.icon) return <></>;
                         return (
-                            <div className="hover:redFilter relative h-10 w-10 md:h-20 md:w-20 ">
+                            <div
+                                key={i}
+                                className="hover:redFilter relative h-10 w-10 md:h-20 md:w-20 "
+                            >
                                 <Link href={social.link}>
                                     <Image src={social.icon} fill alt={social.title} />
                                 </Link>

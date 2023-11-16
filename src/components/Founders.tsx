@@ -12,9 +12,9 @@ const Founders: React.FC<{
                 {JSON.stringify(founders) &&
                     founders
                         .sort((a: any, b: any) => a.order - b.order)
-                        .map((founder: any) => {
+                        .map((founder: any, i) => {
                             return (
-                                <div className="relative flex  flex-col items-center">
+                                <div key={i} className="relative flex  flex-col items-center">
                                     <div className="relative h-[200px] w-[200px] overflow-clip rounded-[3rem] border-4 border-ted-red-100 md:h-[300px] md:w-[300px]">
                                         <Image
                                             src={founder.photo}

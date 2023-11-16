@@ -13,7 +13,7 @@ const MONTHS = [
     'December'
 ];
 
-export const useDate = (dateStr: string) => {
+export const convertDate = (dateStr: string) => {
     const date = new Date(dateStr);
     return {
         year: date.getFullYear(),

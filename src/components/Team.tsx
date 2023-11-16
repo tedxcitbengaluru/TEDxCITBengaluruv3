@@ -13,9 +13,10 @@ const Team: React.FC<{
                 Meet our Core Team
             </div>
             <div className="flex flex-row flex-wrap items-center justify-center gap-8 md:gap-16">
-                {sortedKeys.map((key) => {
+                {sortedKeys.map((key, i) => {
                     return (
                         <button
+                            key={i}
                             onClick={() => setSelectedKey(key)}
                             style={
                                 selectedKey === key
@@ -45,9 +46,12 @@ const Team: React.FC<{
                                     <div className="relative mx-auto flex w-[80vw] flex-row flex-wrap justify-evenly gap-16">
                                         {eventTeam[cat].people
                                             .sort((a: any, b: any) => a.order - b.order)
-                                            .map((person: any) => {
+                                            .map((person: any, i: number) => {
                                                 return (
-                                                    <div className="relative flex  flex-col items-center">
+                                                    <div
+                                                        key={i}
+                                                        className="relative flex  flex-col items-center"
+                                                    >
                                                         <div className="relative h-[200px] w-[200px] overflow-clip rounded-[3rem] border-4 border-ted-red-100 md:h-[300px] md:w-[300px]">
                                                             <Image
                                                                 src={person.photo}
