@@ -16,7 +16,7 @@ export default function Home({ home, socials }: { home: any; socials: any }) {
     const date = convertDate(home.date.start);
     return (
         <main>
-            <div className="relative flex h-[calc(510/1047*100vw)] w-screen justify-center">
+            <div className="relative flex h-[calc(2160/3840*100vw)] w-screen justify-center">
                 <Image
                     src={home.backdrop_photo}
                     alt="banner"
@@ -36,12 +36,12 @@ export default function Home({ home, socials }: { home: any; socials: any }) {
                                     />
                                 </div>
                             ) : (
-                                <div className="relative h-[calc(510/1047)*80vw] w-[80vw]">
+                                <div className="relative h-[calc(2160/3840)*80vw] w-[80vw]">
                                     <Image
                                         src={home.backdrop_photo}
                                         className="relative w-full rounded-3xl border-4 border-ted-white-100"
-                                        width={1047}
-                                        height={510}
+                                        width={3840}
+                                        height={2160}
                                         alt="banner"
                                     />
                                 </div>

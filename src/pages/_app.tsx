@@ -55,7 +55,7 @@ export default function App({ Component, pageProps }: AppProps) {
                     <Navbar enableMenu={() => setMenuVisible(true)} />
                     <Component {...pageProps} />
                     <footer className="w-screen bg-ted-red-100 px-8 py-4 text-center text-xs text-ted-white-100 md:text-sm">
-                        Copyright 2022 © TEDxCITBengaluru This independent TEDx event is operated
+                        Copyright 2023 © TEDxCITBengaluru This independent TEDx event is operated
                         under license from TED
                     </footer>
                 </>
