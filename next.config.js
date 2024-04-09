@@ -2,6 +2,9 @@
 const nextConfig = {
     reactStrictMode: true,
     images: {
+        // loader: 'akamai',
+        // path: '/',
+        unoptimized: true,
         domains: [
             's3.us-west-2.amazonaws.com',
             'pbs.twimg.com',
