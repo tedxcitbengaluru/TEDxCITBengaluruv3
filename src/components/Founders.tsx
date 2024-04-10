@@ -5,7 +5,7 @@ const Founders: React.FC<{
 }> = ({ founders }) => {
     return (
         <>
-            <div className="my-16 text-center text-3xl font-bold text-ted-black-100 md:text-5xl">
+            {/* <div className="my-16 text-center text-3xl font-bold text-ted-black-100 md:text-5xl">
                 Founders
             </div>
             <div className="relative mx-auto my-16 flex w-[80vw] flex-row flex-wrap justify-evenly gap-16">
@@ -32,7 +32,7 @@ const Founders: React.FC<{
                                 </div>
                             );
                         })}
-            </div>
+            </div> */}
         </>
     );
 };
