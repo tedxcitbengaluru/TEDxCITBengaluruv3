@@ -14,6 +14,15 @@ const nextConfig = {
         dangerouslyAllowSVG: true,
         contentDispositionType: 'attachment',
         contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;"
+    },
+    async redirects() {
+        return [
+            {
+                source: '/aether',
+                destination: process.env.REGISTRATION_FORM,
+                permanent: true
+            }
+        ];
     }
 };
 
