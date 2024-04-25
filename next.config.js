@@ -21,6 +21,11 @@ const nextConfig = {
                 source: '/aether',
                 destination: process.env.REGISTRATION_FORM,
                 permanent: true
+            },
+            {
+                source: '/aether-qr',
+                destination: process.env.QR_LINK,
+                permanent: true
             }
         ];
     }
