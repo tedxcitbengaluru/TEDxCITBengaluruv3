@@ -37,7 +37,7 @@ export const getStaticProps: GetStaticProps = async () => {
     const data = await response.json();
 
     const images = data.items.map((item: any) => item.thumbnailLink);
-
+    
 
       
     return {
