@@ -37,8 +37,8 @@ export const getServerSideProps: GetStaticProps = async () => {
         return {
             props: {
                 images
-            },
-            revalidate: process.env.REVALIDATE ? parseInt(process.env.REVALIDATE) : 10
+            }
+            // revalidate: process.env.REVALIDATE ? parseInt(process.env.REVALIDATE) : 10
         };
     } catch (error) {
         console.error('Error fetching images:', error);
