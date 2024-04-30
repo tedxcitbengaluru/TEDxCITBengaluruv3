@@ -63,12 +63,27 @@ const Photogallery: React.FC<GalleryProps> = ({ resources }) => {
                             />
                         )}
                         {res.type === 'video' && (
-                            <video
-                                autoPlay={true}
-                                controls={false}
-                                src={`https://drive.google.com/uc?id=${res.id}`}
-                                // type={res.mimetype}
-                            ></video>
+                            <></>
+                            // <video
+                            //     autoPlay={true}
+                            //     controls={false}
+                            //     muted={true}
+                            //     itemType={res.mimetype}
+                            //     typeof={res.mimetype}
+                            //     src={`https://www.youtube.com/watch?v=ddTV12hErTc&ab_channel=MarquesBrownlee`}
+                            //     // type={res.mimetype}
+                            // ></video>
+                            // <video controls={true} autoPlay>
+                            //     <source
+                            //         src="https://www.youtube.com/watch?v=ddTV12hErTc&ab_channel=MarquesBrownlee"
+                            //         type="video/mp4"
+                            //     />
+                            // </video>
+                            // <iframe
+                            //     title="hello"
+                            //     src="https://drive.google.com/file/d/1Tzp3V0U4qUp83Nevdka_XA_Afi6kzrh9/preview"
+                            //     allow="autoplay"
+                            // ></iframe>
                         )}
                     </div>
                 ))}
@@ -89,7 +104,7 @@ export const getServerSideProps: GetStaticProps = async () => {
         const response = await fetch(`${driveLink}&key=${apiKey}`);
         const data = await response.json();
 
-        const allowedTypes = ['image', 'video'];
+        const allowedTypes = ['image'];
 
         const resources = data.items
             .filter((x: any) => allowedTypes.includes(x.mimeType.split('/')[0]))
