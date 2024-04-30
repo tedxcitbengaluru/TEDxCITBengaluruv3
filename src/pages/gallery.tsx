@@ -106,21 +106,27 @@ export const getServerSideProps: GetStaticProps = async () => {
 
         const allowedTypes = ['image'];
 
+        // Sort items by upload date in descending order
+        data.items.sort((a: any, b: any) => {
+            const dateA = new Date(a.createdDate);
+            const dateB = new Date(b.createdDate);
+            return dateB.getTime() - dateA.getTime();
+        });
+
         const resources = data.items
             .filter((x: any) => allowedTypes.includes(x.mimeType.split('/')[0]))
+            .slice(0, 25) // Take only the latest 25 items
             .map((item: any) => ({
                 id: item.id,
                 type: item.mimeType.split('/')[0],
                 mimetype: item.mimeType,
                 webContentLink: item.webContentLink
             }));
-        // .slice(0, 1);
 
         return {
             props: {
                 resources
             }
-            // revalidate: process.env.REVALIDATE ? parseInt(process.env.REVALIDATE) : 10
         };
     } catch (error) {
         console.error('Error fetching images:', error);
@@ -131,5 +137,6 @@ export const getServerSideProps: GetStaticProps = async () => {
         };
     }
 };
+
 
 export default Photogallery;
