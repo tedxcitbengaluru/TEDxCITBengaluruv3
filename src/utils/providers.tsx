@@ -9,14 +9,14 @@ const queryClient = new QueryClient();
 export const Providers: React.FC<{ children: ReactNode }> = ({ children }) => {
     return (
         <QueryClientProvider client={queryClient}>
-            <ThemeProvider
+            {/* <ThemeProvider
                 attribute="class"
                 defaultTheme="dark"
                 enableSystem
                 disableTransitionOnChange
-            >
-                {children}
-            </ThemeProvider>
+            > */}
+            {children}
+            {/* </ThemeProvider> */}
         </QueryClientProvider>
     );
 };
