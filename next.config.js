@@ -4,6 +4,12 @@ const nextConfig = {
     images: {
         // loader: 'akamai',
         // path: '/',
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: process.env.NEXT_PUBLIC_SUPABASE_URL?.split('https://')[1]
+            }
+        ],
         unoptimized: true,
         domains: [
             's3.us-west-2.amazonaws.com',

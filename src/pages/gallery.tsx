@@ -1,78 +1,69 @@
-import { GetStaticProps } from 'next';
-
 import React from 'react';
+import { staticSupabaseClient } from '@/utils/staticSupabaseClient';
+import { useQuery } from '@tanstack/react-query';
+import { GetFileBaseUrl } from '@/utils/storage/getFileBaseUrl';
 import Image from 'next/image';
+import { UploadButton } from '@/components/uploadButton';
+import { appConstants } from '@/utils/appConstants';
 
 interface GalleryProps {
     resources: { id: string; type: 'image' | 'video'; mimetype: string; webContentLink: string }[];
 }
 
-//  {
-//       kind: 'drive#file',
-//       userPermission: [Object],
-//       fileExtension: 'mp4',
-//       md5Checksum: '7d8d9c8210026141be71069190428626',
-//       selfLink: 'https://www.googleapis.com/drive/v2/files/1Tzp3V0U4qUp83Nevdka_XA_Afi6kzrh9',
-//       ownerNames: [Array],
-//       lastModifyingUserName: 'tedxcitbengaluru',
-//       editable: true,
-//       writersCanShare: true,
-//       downloadUrl: '/drive/v2/files/1Tzp3V0U4qUp83Nevdka_XA_Afi6kzrh9?alt=media&source=downloadUrl',
-//       mimeType: 'video/mp4',
-//       parents: [Array],
-//       thumbnailLink: 'https://lh3.googleusercontent.com/drive-storage/AJQWtBNHmXhCdzunccDScmTOfRzfWrBzOEN5ffQag0E7RyhGI3UzrFbmgKK1yHAXipUfixiTUOMkwu_122YuW3JrAdx0VyA2DpeY0cJ3YQ=s220',
-//       appDataContents: false,
-//       iconLink: 'https://drive-thirdparty.googleusercontent.com/16/type/video/mp4',
-//       shared: true,
-//       lastModifyingUser: [Object],
-//       owners: [Array],
-//       headRevisionId: '0B1yAsd8meyqNUitDbmgweDN0bTJmMzZ0UWxMWStrTno5aEQ0PQ',
-//       copyable: false,
-//       etag: '"MTcxNDQ2NTQzNTk3OQ"',
-//       alternateLink: 'https://drive.google.com/file/d/1Tzp3V0U4qUp83Nevdka_XA_Afi6kzrh9/view?usp=drivesdk',
-//       embedLink: 'https://drive.google.com/file/d/1Tzp3V0U4qUp83Nevdka_XA_Afi6kzrh9/preview?usp=drivesdk',
-//       webContentLink: 'https://drive.google.com/uc?id=1Tzp3V0U4qUp83Nevdka_XA_Afi6kzrh9&export=download',
-//       fileSize: '2024527',
-//       copyRequiresWriterPermission: false,
-//       spaces: [Array],
-//       id: '1Tzp3V0U4qUp83Nevdka_XA_Afi6kzrh9',
-//       title: 'Copy of VID-20240322-WA0082.mp4',
-//       labels: [Object],
-//       explicitlyTrashed: false,
-//       createdDate: '2024-04-30T08:23:55.979Z',
-//       modifiedDate: '2024-04-30T08:23:55.979Z',
-//       markedViewedByMeDate: '1970-01-01T00:00:00.000Z',
-//       quotaBytesUsed: '2024527',
-//       version: '8',
-//       originalFilename: 'Copy of VID-20240322-WA0082.mp4',
-//       capabilities: [Object],
-//       videoMediaMetadata: [Object]
-//     },
+const PhotoGallery: React.FC<GalleryProps> = ({}) => {
+    const query = useQuery({
+        queryKey: ['gallery'],
+        queryFn: async () => {
+            return await staticSupabaseClient
+                .from('Media')
+                .select('*')
+                .eq('display', true)
+                .eq('bucketName', appConstants.NEXT_PUBLIC_SUPABASE_BUCKET_NAME)
+                .limit(25);
+        },
+        refetchOnWindowFocus: true,
+        refetchOnMount: true,
+        refetchInterval: 5000
+    });
 
-const Photogallery: React.FC<GalleryProps> = ({ resources }) => {
     return (
-        <div>
-            <div className="photogallery-container">
-                {resources.map((res, index) => (
+        <div className="absolute top-0 left-0 h-screen w-screen bg-[url('/AetherBG.png')]">
+            <div className="flex h-[10vh] items-center justify-center px-4 py-2 sm:h-[12vh] sm:px-16 sm:py-4">
+                <div className="xs:h-[70%] h-[50%] w-auto sm:h-full sm:w-auto">
+                    <Image
+                        src="/logo/whitenobg.png"
+                        width={1346}
+                        height={185}
+                        // fill
+                        className="h-full w-full"
+                        alt="Logo"
+                    />
+                </div>
+            </div>
+            {/* <div className="w-[300px]">
+                <UploadButton multiple={true} />
+            </div> */}
+            <div className=" photogallery-container">
+                {query.data?.data?.map((res, index) => (
                     <div className="photogallery-item" key={index}>
-                        {res.type === 'image' && (
-                            <img
-                                src={`https://drive.google.com/thumbnail?id=${res.id}`}
+                        {res.type === 'IMAGE' && (
+                            <Image
+                                src={GetFileBaseUrl(res.bucketName, res.path)}
                                 alt={`Pic ${index + 1}`}
+                                width={res.metadata.dimensions.width}
+                                height={res.metadata.dimensions.height}
                                 loading="lazy"
                             />
                         )}
-                        {res.type === 'video' && (
-                            <></>
-                            // <video
-                            //     autoPlay={true}
-                            //     controls={false}
-                            //     muted={true}
-                            //     itemType={res.mimetype}
-                            //     typeof={res.mimetype}
-                            //     src={`https://www.youtube.com/watch?v=ddTV12hErTc&ab_channel=MarquesBrownlee`}
-                            //     // type={res.mimetype}
-                            // ></video>
+                        {res.type === 'VIDEO' && (
+                            // <></>
+                            <video
+                                loop={true}
+                                controls={false}
+                                muted={true}
+                                src={GetFileBaseUrl(res.bucketName, res.path)}
+                                // type={res.mimetype}
+                            ></video>
                             // <video controls={true} autoPlay>
                             //     <source
                             //         src="https://www.youtube.com/watch?v=ddTV12hErTc&ab_channel=MarquesBrownlee"
@@ -92,51 +83,4 @@ const Photogallery: React.FC<GalleryProps> = ({ resources }) => {
     );
 };
 
-export const getServerSideProps: GetStaticProps = async () => {
-    try {
-        const apiKey = process.env.GOOGLE_DRIVE_API_KEY;
-        const driveLink = process.env.GOOGLE_DRIVE_API_LINK;
-
-        if (!apiKey || !driveLink) {
-            throw new Error('Google Drive API key or link not provided in environment variables');
-        }
-
-        const response = await fetch(`${driveLink}&key=${apiKey}`);
-        const data = await response.json();
-
-        const allowedTypes = ['image'];
-
-        // Sort items by upload date in descending order
-        data.items.sort((a: any, b: any) => {
-            const dateA = new Date(a.createdDate);
-            const dateB = new Date(b.createdDate);
-            return dateB.getTime() - dateA.getTime();
-        });
-
-        const resources = data.items
-            .filter((x: any) => allowedTypes.includes(x.mimeType.split('/')[0]))
-            .slice(0, 25) // Take only the latest 25 items
-            .map((item: any) => ({
-                id: item.id,
-                type: item.mimeType.split('/')[0],
-                mimetype: item.mimeType,
-                webContentLink: item.webContentLink
-            }));
-
-        return {
-            props: {
-                resources
-            }
-        };
-    } catch (error) {
-        console.error('Error fetching images:', error);
-        return {
-            props: {
-                resources: []
-            }
-        };
-    }
-};
-
-
-export default Photogallery;
+export default PhotoGallery;

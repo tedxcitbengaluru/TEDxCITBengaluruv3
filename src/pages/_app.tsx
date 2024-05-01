@@ -5,6 +5,8 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { Router } from 'next/router';
 import { useCallback, useEffect, useState } from 'react';
+import { Toaster } from '@/components/ui/sonner';
+import { Providers } from '@/utils/providers';
 
 export default function App({ Component, pageProps }: AppProps) {
     const [menuVisible, setMenuVisible] = useState(false);
@@ -52,12 +54,15 @@ export default function App({ Component, pageProps }: AppProps) {
                 <Menu disableMenu={() => setMenuVisible(false)} />
             ) : (
                 <>
-                    <Navbar enableMenu={() => setMenuVisible(true)} />
-                    <Component {...pageProps} />
-                    <footer className="w-screen bg-ted-red-100 px-8 py-4 text-center text-xs text-ted-white-100 md:text-sm">
-                        Copyright 2023 © TEDxCITBengaluru This independent TEDx event is operated
-                        under license from TED
-                    </footer>
+                    <Providers>
+                        <Navbar enableMenu={() => setMenuVisible(true)} />
+                        <Component {...pageProps} />
+                        <footer className="w-screen bg-ted-red-100 px-8 py-4 text-center text-xs text-ted-white-100 md:text-sm">
+                            Copyright 2023 © TEDxCITBengaluru This independent TEDx event is
+                            operated under license from TED
+                        </footer>
+                    </Providers>
+                    <Toaster richColors closeButton />
                 </>
             )}
         </>

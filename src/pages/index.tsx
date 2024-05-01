@@ -30,6 +30,7 @@ export default function Home({ home, socials }: { home: any; socials: any }) {
                             {home.video ? (
                                 <div className="h-[calc(1080/1920*80vw)] w-[80vw]">
                                     <iframe
+                                        title={'hell'}
                                         src={home.video}
                                         allow="autoplay"
                                         className="h-full w-full rounded-3xl border-4 border-ted-white-100"
