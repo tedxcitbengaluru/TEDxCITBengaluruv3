@@ -3,7 +3,6 @@ import { staticSupabaseClient } from '@/utils/staticSupabaseClient';
 import { useQuery } from '@tanstack/react-query';
 import { GetFileBaseUrl } from '@/utils/storage/getFileBaseUrl';
 import Image from 'next/image';
-import { UploadButton } from '@/components/uploadButton';
 import { appConstants } from '@/utils/appConstants';
 
 interface GalleryProps {
@@ -27,7 +26,7 @@ const PhotoGallery: React.FC<GalleryProps> = ({}) => {
     });
 
     return (
-        <div className="absolute top-0 left-0 h-screen w-screen bg-[url('/AetherBG.png')] bg-repeat-y">
+        <div className="absolute top-0 left-0 h-auto w-screen bg-[url('/AetherBG.png')] bg-repeat-y">
             <div className="flex h-[10vh] items-center justify-center px-4 py-2 sm:h-[12vh] sm:px-16 sm:py-4">
                 <div className="xs:h-[70%] h-[50%] w-auto sm:h-full sm:w-auto">
                     <Image
