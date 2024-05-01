@@ -27,7 +27,7 @@ const PhotoGallery: React.FC<GalleryProps> = ({}) => {
     });
 
     return (
-        <div className="absolute top-0 left-0 h-screen w-screen bg-[url('/AetherBG.png')]">
+        <div className="absolute top-0 left-0 h-screen w-screen bg-[url('/AetherBG.png')] bg-repeat-y">
             <div className="flex h-[10vh] items-center justify-center px-4 py-2 sm:h-[12vh] sm:px-16 sm:py-4">
                 <div className="xs:h-[70%] h-[50%] w-auto sm:h-full sm:w-auto">
                     <Image
@@ -61,6 +61,7 @@ const PhotoGallery: React.FC<GalleryProps> = ({}) => {
                                 loop={true}
                                 controls={false}
                                 muted={true}
+                                autoPlay={true}
                                 src={GetFileBaseUrl(res.bucketName, res.path)}
                                 // type={res.mimetype}
                             ></video>
