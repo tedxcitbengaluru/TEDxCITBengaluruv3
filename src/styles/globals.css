@@ -151,3 +151,50 @@
 .photogallery-item:hover img {
     transform: scale(1.02);
 }
+
+.upload-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 40px;
+    border: 2px dashed #888;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .upload-container:hover {
+    border-color: #888;
+  }
+  
+  .upload-container input[type="file"] {
+    display: none;
+  }
+  
+  .upload-icon {
+    font-size: 40px;
+    color: #fff;
+  }
+  
+  .upload-text {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #888;
+    padding-bottom: 20px;
+  }
+  
+  .upload-text strong {
+    color: #fff;
+  }
+  
+  .upload-photo-container {
+    background-color: #222; /* pitch black color */
+}
+
+.upload-button {
+    color: white; /* White text color */
+}
+
+.remove-button {
+    color: red;
+}
