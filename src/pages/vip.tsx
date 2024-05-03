@@ -7,7 +7,7 @@ const VIPPage: React.FC = () => {
     const [authorized, setAuthorized] = useState(false);
 
     const handleLogin = () => {
-        const correctPassword = process.env.NEXT_PUBLIC_VIP_PASSWORD || '';
+        const correctPassword = process.env.NEXT_PUBLIC_VIP_PASS || '';
         if (enteredPassword === correctPassword) {
             setAuthorized(true);
         } else {
