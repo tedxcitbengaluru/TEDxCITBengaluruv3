@@ -32,6 +32,11 @@ const nextConfig = {
                 source: '/aether-qr',
                 destination: process.env.QR_LINK,
                 permanent: true
+            },
+            {
+                source: '/ticketing',
+                destination: process.env.TICKET_SHEET,
+                permanent: true
             }
         ];
     }
